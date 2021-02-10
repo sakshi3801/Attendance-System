@@ -116,6 +116,7 @@ class tkinterApp(tk.Tk):
 
     def MorningAttendance(a):
         i = 1
+
         # This fun returns the name of the user by matching it with the id
         def UserDetails(id):
             i = 0
@@ -123,7 +124,6 @@ class tkinterApp(tk.Tk):
             csv_f = csv.reader(f)
             for row in csv_f:
                 for col in row:
-
                     if(col == str(id)):
                         i = 1
                         continue
@@ -146,17 +146,15 @@ class tkinterApp(tk.Tk):
 
             for(x, y, w, h) in faces:
                 cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
-
-                id, conf = recognizer.predict(gray[y:y+h, x:x+w])
-
-                if (conf < 75):
+                id, confidence = recognizer.predict(gray[y:y+h, x:x+w])
+                if (confidence < 75):
                     ts = time.time()
                     date = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d')
                     timeStamp = datetime.datetime.fromtimestamp(ts).strftime("%H:%M:%S")
 
                     id1 = id
                     id = str(id) + ' ' + UserDetails(id)
-                    confidence = "  {0}%".format(round(100 - conf))
+                    confidence = "  {0}%".format(round(100 - confidence))
                     if (i == 1):
                         row = [id1, UserDetails(id1), date, timeStamp]
                         with open(r"Attendance\MorningAttendance.csv", 'a+') as csvFile:
@@ -165,12 +163,12 @@ class tkinterApp(tk.Tk):
                             writer.writerow(row)
                         csvFile.close()
                         i = i + 1
-                    else:
-                        id = "Unknown"
-                        confidence = "  {0}%".format(round(100 - conf))
+                else:
+                    id = "Unknown"
+                    confidence = "  {0}%".format(round(100 - confidence))
 
-                    cv2.putText(img, str(id), (x + 5, y - 5), font, 1, (255, 255, 255), 2)
-                    cv2.putText(img, str(confidence), (x + 5, y + h - 5), font, 1, (255, 255, 0), 1)
+                cv2.putText(img, str(id), (x + 5, y - 5), font, 1, (255, 255, 255), 2)
+                cv2.putText(img, str(confidence), (x + 5, y + h - 5), font, 1, (255, 255, 0), 1)
 
             cv2.imshow('Camera', img)
 
@@ -189,7 +187,7 @@ class tkinterApp(tk.Tk):
             f = open('UserDetails.csv')
             csv_f = csv.reader(f)
             for row in csv_f:
-                for col in line:
+                for col in row:
                     if (col == str(id)):
                         i = 1
                         continue
@@ -281,13 +279,13 @@ class HomePage(tk.Frame):
         txt2.place(x=600, y=275)
 
         MorningAttendance = tk.Button(self, text="Morning Attendance ",
-                                      command=lambda: controller.MorningAttendance(), fg="white", bg="#00af91",
+                                      command=lambda:controller.MorningAttendance(), fg="white", bg="#00af91",
                                       width=15, height=2, activebackground="Red",
                                       font=('times', 15, ' bold '))
         MorningAttendance.place(x=380, y=360)
 
         EveningAttendance = tk.Button(self, text="Evening Attendance ",
-                                      command=lambda: controller.EveningAttendance(), fg="white", bg="#00af91",
+                                      command=lambda:controller.EveningAttendance(), fg="white", bg="#00af91",
                                       width=15, height=2, activebackground="Red",
                                       font=('times', 15, ' bold '))
         EveningAttendance.place(x=650, y=359)
