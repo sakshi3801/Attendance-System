@@ -18,7 +18,7 @@ class tkinterApp(tk.Tk):
 
         self.frames = {}
 
-        for F in (HomePage, LoginPage):
+        for F in (HomePage, SignUpPage):
             frame = F(container, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
@@ -249,7 +249,7 @@ class HomePage(tk.Frame):
 
         msg = tk.Label(
             self, text="Online Attendance System",
-            bg="#00af91", fg="white", width=55,
+            bg="#ffe227", fg="#393e46", width=55,
             height=3, font=('times', 30, 'bold'))
         msg.place(x=120, y=20)
 
@@ -259,110 +259,110 @@ class HomePage(tk.Frame):
         # lbl.place(x=400, y=162)
 
         lbl1 = tk.Label(self, text="Employee Id : ",
-                        width=20, height=2, fg="#00af91",
-                        bg="white", font=('times', 15, ' bold '))
+                        width=20, height=2, fg="#393e46",
+                        bg="#fff", font=('times', 15, ' bold '))
         lbl1.place(x=400, y=210)
 
         txt1 = tk.Entry(self,
                         width=20, bg="white",
-                        fg="black", font=('times', 15, ' bold '))
+                        fg="#393e46", font=('times', 15, ' bold '))
         txt1.place(x=600, y=225)
 
         lbl2 = tk.Label(self, text="Employee_Name : ",
-                        width=20, fg="#00af91", bg="white",
+                        width=20, fg="#393e46", bg="#fff",
                         height=2, font=('times', 15, ' bold '))
         lbl2.place(x=400, y=260)
 
         txt2 = tk.Entry(self, width=20,
-                        bg="white", fg="black",
+                        bg="white", fg="#393e46",
                         font=('times', 15, ' bold '))
         txt2.place(x=600, y=275)
 
         MorningAttendance = tk.Button(self, text="Morning Attendance ",
-                                      command=lambda:controller.MorningAttendance(), fg="white", bg="#00af91",
+                                      command=lambda:controller.MorningAttendance(), fg="#393e46", bg="#ffe227",
                                       width=15, height=2, activebackground="Red",
                                       font=('times', 15, ' bold '))
         MorningAttendance.place(x=380, y=360)
 
         EveningAttendance = tk.Button(self, text="Evening Attendance ",
-                                      command=lambda:controller.EveningAttendance(), fg="white", bg="#00af91",
+                                      command=lambda:controller.EveningAttendance(), fg="#393e46", bg="#ffe227",
                                       width=15, height=2, activebackground="Red",
                                       font=('times', 15, ' bold '))
         EveningAttendance.place(x=650, y=359)
 
         takeImg = tk.Button(self, text="Sign Up ",
-                            command=lambda: controller.show_frame(LoginPage), fg="white", bg="#00af91",
+                            command=lambda: controller.show_frame(SignUpPage), fg="#393e46", bg="#ffe227",
                             width=15, height=2, activebackground="Red",
                             font=('times', 15, ' bold '))
         takeImg.place(x=500, y=460)
 
         lbl = tk.Label(self, text="Instructions: If you are a new employee click on Sign Up otherwise mark the corresponding attendance",
-                        width=100, fg="#00af91", bg="white",
+                        width=100, fg="#393e46", bg="white",
                         height=2, font=('times', 15, ' bold '))
         lbl.place(x=250,y=550)
 
 
-class LoginPage(tk.Frame):
+class SignUpPage(tk.Frame):
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, bg='white')
+        tk.Frame.__init__(self, parent, bg='#fff')
 
         message = tk.Label(
             self, text="Sign Up",
-            bg="#00af91", fg="white", width=55,
+            bg="#ffe227", fg="#393e46", width=55,
             height=3, font=('times', 30, 'bold'))
         message.place(x=200, y=20)
 
         lbll = tk.Label(self, text="Enter Your Details ",
-                        width=20, height=2, fg="#00af91",
-                        bg="white", font=('times', 15, ' bold '))
+                        width=20, height=2, fg="#393e46",
+                        bg="#fff", font=('times', 15, ' bold '))
         lbll.place(x=470, y=220)
 
         lbl1 = tk.Label(self, text="Employee Id : ",
-                        width=20, height=2, fg="#00af91",
-                        bg="white", font=('times', 15, ' bold '))
+                        width=20, height=2, fg="#393e46",
+                        bg="#fff", font=('times', 15, ' bold '))
         lbl1.place(x=400, y=270)
 
-        txt1 = tk.Entry(self, width=20, bg="white",
-                        fg="black", font=('times', 15, ' bold '))
+        txt1 = tk.Entry(self, width=20, bg="#fff",
+                        fg="#393e46", font=('times', 15, ' bold '))
         txt1.place(x=600, y=285)
 
-        lbl2 = tk.Label(self, text="Employee_Name : ",
-                        width=20, fg="#00af91", bg="white",
+        lbl2 = tk.Label(self, text="Employee Name : ",
+                        width=20, fg="#393e46", bg="#fff",
                         height=2, font=('times', 15, ' bold '))
         lbl2.place(x=400, y=320)
 
         txt2 = tk.Entry(self, width=20,
-                        bg="white", fg="black",
+                        bg="#fff", fg="#393e46",
                         font=('times', 15, ' bold '))
         txt2.place(x=600, y=335)
 
         TakeImage = tk.Button(self, text="Take Images",
-                              command=lambda: controller.TakeImages(txt1, txt2), fg="white", bg="#00af91",
+                              command=lambda: controller.TakeImages(txt1, txt2), fg="#393e46", bg="#ffe227",
                               width=15, height=2, activebackground="Red",
                               font=('times', 15, ' bold '))
         TakeImage.place(x=380, y=420)
 
         TrainImage = tk.Button(self, text="Train Images ",
-                               command=lambda: controller.TrainImages(), fg="white", bg="#00af91",
+                               command=lambda: controller.TrainImages(), fg="#393e46", bg="#ffe227",
                                width=15, height=2, activebackground="Red",
                                font=('times', 15, ' bold '))
         TrainImage.place(x=650, y=419)
 
-        MainMenu = tk.Button(self, text="Return To Main Menu",
-                             command=lambda: controller.show_frame(HomePage), fg='white'
-                             , bg='#00af91', width=15, height=2, activebackground='red',
+        MainMenu = tk.Button(self, text="Main Menu",
+                             command=lambda: controller.show_frame(HomePage), fg='#393e46'
+                             , bg='#ffe227', width=15, height=2, activebackground='red',
                              font=('times', 15, ' bold '))
         MainMenu.place(x=520, y=500)
 
         message1 = tk.Label(
             self, text="Instructions: Click on Take Images,your images will be clicked. After that click on Train Images.",
-            bg='white', fg="#00af91", width=100,
+            bg='#fff', fg="#393e46", width=100,
             height=1, font=('times', 18, 'bold'))
         message1.place(x=0, y=580)
 
         message2 = tk.Label(
-            self, text="Click on Return to Main Menu and mark your attendance.",
-            bg="white", fg="#00af91", width=100,
+            self, text="Click on Main Menu and mark your attendance.",
+            bg="#fff", fg="#393e46", width=100,
             height=1, font=('times', 18, 'bold'))
         message2.place(x=0, y=610)
 
